@@ -2,17 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
-body, html {
-    overflow: hidden; /* Hide the scrollbar for the whole page */
-  }
+body,
+html {
+  overflow: hidden; /* Hide the scrollbar for the whole page */
+}
 .container {
-    -ms-overflow-style: none; /* Internet Explorer and Edge */
-    scrollbar-width: none; /* Firefox */
-  }
+  -ms-overflow-style: none; /* Internet Explorer and Edge */
+  scrollbar-width: none; /* Firefox */
+}
 
 .bg {
-    background: #2C275D;
+  background: #2c275d;
 }
 .Btn {
-    background: #168E8C;
+  background: #168e8c;
 }

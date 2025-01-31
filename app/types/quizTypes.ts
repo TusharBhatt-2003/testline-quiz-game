@@ -28,7 +28,7 @@ export interface Question {
 export interface QuizData {
   title: string;
   topic: string;
-  duration: number; 
+  duration: number;
   negative_marks: number;
   correct_answer_marks: number;
   questions: Question[];

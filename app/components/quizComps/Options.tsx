@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import Link from 'next/link';
-import { Option } from '../../types/quizTypes';
-import Confetti from 'react-confetti';
-import { useQuiz } from '../../context/QuizContext';
-import QuizCompletionPopup from './QuizCompletionPopup';
-import { motion } from 'motion/react';
+import React, { useState, useEffect } from "react";
+import Link from "next/link";
+import { Option } from "../../types/quizTypes";
+import Confetti from "react-confetti";
+import { useQuiz } from "../../context/QuizContext";
+import QuizCompletionPopup from "./QuizCompletionPopup";
+import { motion } from "motion/react";
 
 interface OptionsProps {
   options: Option[];
@@ -14,18 +14,26 @@ interface OptionsProps {
   totalQuestions: number;
 }
 
-export default function Options({ options, questionId, correct_answer_marks, negative_marks, totalQuestions }: OptionsProps) {
-  const { answers, setAnswer,  } = useQuiz();
+export default function Options({
+  options,
+  questionId,
+  correct_answer_marks,
+  negative_marks,
+  totalQuestions,
+}: OptionsProps) {
+  const { answers, setAnswer } = useQuiz();
   const [selectedOptionId, setSelectedOptionId] = useState<number | null>(null);
   const [isAnswered, setIsAnswered] = useState(false);
   const [showConfetti, setShowConfetti] = useState(false);
   const [fadeConfetti, setFadeConfetti] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
-//  console.log(Object.keys(answers).length);
-//  console.log(totalQuestions);
- 
- 
-  const { selectedOptionId: contextSelectedOptionId, correctOptionId: contextCorrectOptionId } = answers[questionId] || {};
+  //  console.log(Object.keys(answers).length);
+  //  console.log(totalQuestions);
+
+  const {
+    selectedOptionId: contextSelectedOptionId,
+    correctOptionId: contextCorrectOptionId,
+  } = answers[questionId] || {};
 
   useEffect(() => {
     if (contextSelectedOptionId !== undefined) {
@@ -63,10 +71,16 @@ export default function Options({ options, questionId, correct_answer_marks, neg
       }, 4000);
     }
 
-    setAnswer(questionId, id, correctOption?.id || null, correct_answer_marks, negative_marks);
+    setAnswer(
+      questionId,
+      id,
+      correctOption?.id || null,
+      correct_answer_marks,
+      negative_marks,
+    );
   };
 
-  const optionLabels = ['a', 'b', 'c', 'd'];
+  const optionLabels = ["a", "b", "c", "d"];
   const isQuestionAnswered = contextSelectedOptionId !== undefined;
 
   // Check if all questions are answered
@@ -84,7 +98,7 @@ export default function Options({ options, questionId, correct_answer_marks, neg
           height={window.innerHeight}
           style={{
             opacity: fadeConfetti ? 0 : 1,
-            transition: 'opacity 1s ease-out',
+            transition: "opacity 1s ease-out",
           }}
         />
       )}
@@ -96,30 +110,29 @@ export default function Options({ options, questionId, correct_answer_marks, neg
 
         return (
           <motion.div
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.8 }}
-          initial={{ opacity: 0, scale: 0, y: 100, }}
-          animate={{ opacity: 1, scale: 1, y: 0,  }}
-          exit={{ opacity: 0, scale: 0, y: 100, }}
-          
-          transition={{
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.8 }}
+            initial={{ opacity: 0, scale: 0, y: 100 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0, y: 100 }}
+            transition={{
               duration: 0.4,
               scale: { type: "spring", visualDuration: 0.8, bounce: 0.3 },
-          }}
+            }}
             key={option.id}
             className={`my-2 md:my-5 p-3 cursor-pointer border-2 border-zinc-500 rounded-xl ${
               isQuestionAnswered
                 ? contextSelectedOptionId === option.id
                   ? isCorrect
-                    ? 'bg-lime-200 text-black border-lime-950'
-                    : 'bg-[#f4aaa7] text-black border-[#510f0d]'
+                    ? "bg-lime-200 text-black border-lime-950"
+                    : "bg-[#f4aaa7] text-black border-[#510f0d]"
                   : contextCorrectOptionId === option.id
-                  ? 'bg-lime-200 text-black border-lime-950'
-                  : ''
+                    ? "bg-lime-200 text-black border-lime-950"
+                    : ""
                 : isSelected
-                ? 'bg-blue-200 text-black border-blue-950'
-                : ''
-            } ${isQuestionAnswered ? 'cursor-not-allowed' : ''}`}
+                  ? "bg-blue-200 text-black border-blue-950"
+                  : ""
+            } ${isQuestionAnswered ? "cursor-not-allowed" : ""}`}
             onClick={() => handleOptionClick(option.id)}
           >
             <p className="capitalize text-lg md:text-xl font-normal">
@@ -129,25 +142,33 @@ export default function Options({ options, questionId, correct_answer_marks, neg
         );
       })}
 
-{isQuestionAnswered && (
-        <motion.div 
-        initial={{ opacity: 0, scale: 0}}
-          animate={{ opacity: 1, scale: 1}}
-
-          
+      {isQuestionAnswered && (
+        <motion.div
+          initial={{ opacity: 0, scale: 0 }}
+          animate={{ opacity: 1, scale: 1 }}
           transition={{
-              duration: 0.4,
-              scale: { type: "spring", visualDuration: 0.4, bounce: 0.1 },
+            duration: 0.4,
+            scale: { type: "spring", visualDuration: 0.4, bounce: 0.1 },
           }}
-        className="mt-5 p-2 text-lg md:text-xl text-center bg-lime-950 rounded-lg">
+          className="mt-5 p-2 text-lg md:text-xl text-center bg-lime-950 rounded-lg"
+        >
           <p className="text-lime-200">
-            Correct answer: <strong>{options.find((o) => o.id === contextCorrectOptionId)?.description}</strong>
+            Correct answer:{" "}
+            <strong>
+              {
+                options.find((o) => o.id === contextCorrectOptionId)
+                  ?.description
+              }
+            </strong>
           </p>
         </motion.div>
       )}
 
       {/* Render the quiz completion popup */}
-      <QuizCompletionPopup showPopup={showPopup} onClose={() => setShowPopup(false)} />
+      <QuizCompletionPopup
+        showPopup={showPopup}
+        onClose={() => setShowPopup(false)}
+      />
     </div>
   );
 }

@@ -28,9 +28,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} h-screen antialiased bg`}
       >
-        <QuizProvider>
-          {children}
-        </QuizProvider> 
+        <QuizProvider>{children}</QuizProvider>
       </body>
     </html>
   );

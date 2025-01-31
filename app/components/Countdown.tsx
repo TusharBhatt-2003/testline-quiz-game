@@ -20,19 +20,24 @@ const Countdown: React.FC<CountdownProps> = ({ onComplete }) => {
     [0, 1, 2].forEach((index) => {
       tl.fromTo(
         numbersRef.current[index],
-        { opacity: 0, scale: 0, x: 150, y: 50,  },
-        { opacity: 1, scale: 2, x: 0, y: 0,duration: 0.6, ease: "elastic.out" }
-      )
-        .to(numbersRef.current[index], { opacity: 0, duration: 0.3 }, "+=0.3");
+        { opacity: 0, scale: 0, x: 150, y: 50 },
+        {
+          opacity: 1,
+          scale: 2,
+          x: 0,
+          y: 0,
+          duration: 0.6,
+          ease: "elastic.out",
+        },
+      ).to(numbersRef.current[index], { opacity: 0, duration: 0.3 }, "+=0.3");
     });
 
     // Animate "Start!"
     tl.fromTo(
       startRef.current,
       { opacity: 0, scale: 0 },
-      { opacity: 1, scale: 2, duration: 0.8, ease: "elastic.out(1, 0.5)" }
+      { opacity: 1, scale: 2, duration: 0.8, ease: "elastic.out(1, 0.5)" },
     );
-
   }, []);
 
   return (
@@ -46,7 +51,7 @@ const Countdown: React.FC<CountdownProps> = ({ onComplete }) => {
             }}
             className="opacity-0"
           >
-           <p className="text-7xl">{num}</p>
+            <p className="text-7xl">{num}</p>
           </div>
         ))}
       </div>
