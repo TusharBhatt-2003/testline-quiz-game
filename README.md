@@ -23,7 +23,7 @@ This is a dynamic quiz application built with **Next.js**, **TypeScript**, and *
 
 1. Clone the repository:
    ```sh
-   git clone https://github.com/yourusername/quiz-app.git
+   git clone https://github.com/TusharBhatt-2003/testline-quiz-game
    ```
 2. Navigate to the project folder:
    ```sh

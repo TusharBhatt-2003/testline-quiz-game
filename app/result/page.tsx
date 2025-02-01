@@ -56,7 +56,7 @@ export default function Result() {
   }, [clearCache]);
 
   return (
-    <div className="h-screen flex flex-col items-center justify-center bg p-4 overflow-y-hidden">
+    <div className="h-screen  flex flex-col items-center justify-center bg p-10 md:p-4 overflow-y-hidden">
       <h2 className="text-4xl text-[#168E8C] font-semibold mb-4">
         Quiz Results
       </h2>

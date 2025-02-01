@@ -47,11 +47,11 @@ const Quiz = () => {
   };
 
   return (
-    <div className="flex  h-screen justify-center">
+    <div className="flex p-10 md:p-4  h-screen justify-center">
       {!showQuiz ? (
         <Countdown onComplete={() => setShowQuiz(true)} />
       ) : (
-        <div className="relative">
+        <div className="relative ">
           <div className="flex justify-between items-center m-2">
             <h1 className="text-2xl md:text-4xl text-center font-semibold text-[#168E8C]">
               {quizData?.title}
