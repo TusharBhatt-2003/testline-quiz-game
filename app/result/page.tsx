@@ -199,8 +199,6 @@ export default function Result() {
           onClick={() => setClearCache(true)} // Trigger clearing of cache on click
         >
           <motion.button
-            whileHover={{ scale: 1.2 }}
-            whileTap={{ scale: 0.8 }}
             initial={{ opacity: 0, scale: 0 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{

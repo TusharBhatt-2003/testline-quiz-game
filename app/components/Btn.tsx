@@ -6,6 +6,9 @@ interface BtnProps {
   btnText: string;
 }
 export default function Btn({ href, btnText }: BtnProps) {
+  const handleClick = () => {
+    window.location.href = href; // Reloads the page and navigates
+  };
   return (
     <motion.button
       whileHover={{ scale: 1.2 }}
@@ -16,6 +19,7 @@ export default function Btn({ href, btnText }: BtnProps) {
         duration: 0.4,
         scale: { type: "spring", visualDuration: 0.4, bounce: 0.5 },
       }}
+      onClick={handleClick}
     >
       <Link
         href={href}
